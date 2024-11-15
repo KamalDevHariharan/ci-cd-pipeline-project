@@ -10,6 +10,16 @@ pipeline {
     }
 
     stages {
+        stage('Git Checkout') {
+            steps {
+                git branch: '*/master' changelog: false, poll: false, url: 'https://github.com/KamalDevHariharan/ci-cd-pipeline-project.git'
+            }
+        } 
+        stage('Compile') {
+            steps {
+                sh "mvn clean compile"
+            }
+        } 
         stage('Build WAR') {
             steps {
                 bat "mvn clean package -DskipTests"
