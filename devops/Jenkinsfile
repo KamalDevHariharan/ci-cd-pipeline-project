@@ -20,6 +20,11 @@ pipeline {
                 sh "mvn clean compile"
             }
         } 
+        stage('Build App') {
+            steps {
+                sh "mvn clean install"
+            }
+        }
         stage('Build WAR') {
             steps {
                 bat "mvn clean package -DskipTests"
